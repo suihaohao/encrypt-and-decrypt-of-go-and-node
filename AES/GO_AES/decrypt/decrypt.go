@@ -4,11 +4,12 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/json"
-	"go_aes/encrypt"
+	"go-aes/encrypt"
+
 	log "github.com/sirupsen/logrus"
 )
 
-func AesDecrypt(ciphertext []byte, password []byte, datalen int) (interface{}) {
+func AesDecrypt(ciphertext []byte, password []byte) (interface{}) {
 	key, iv := encrypt.ByteToKey(string(password), 16)
 	block, err := aes.NewCipher(key)
 	if err != nil {
