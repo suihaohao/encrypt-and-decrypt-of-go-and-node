@@ -1,9 +1,10 @@
 package main
 
 import (
+	"encoding/base64"
 	log "github.com/sirupsen/logrus"
-	"go_aes/decrypt"
-	"go_aes/encrypt"
+	"go-aes/decrypt"
+	"go-aes/encrypt"
 )
 
 type TestData struct {
@@ -13,17 +14,21 @@ type TestData struct {
 }
 
 func main() {
-  data := TestData{}
-  data.Name = "my name"
-  data.Password = "1234565"
-  data.Content = "梅须逊雪三分白,雪却输梅一段香"
-  password := encrypt.makePwd(16)
-  encData := encrypt.AesEncrypt(password, data)
-  
-  log.println("encData:", encData)
-  
-  decData := decrypt(base64.StdEncoding.DecodeString(encData), []byte(password))
-  
-  log.println("decData:", decData)
-  
+	log.SetFormatter(&log.TextFormatter{
+		ForceColors:     true,
+		FullTimestamp:   true,
+		TimestampFormat: "2006-01-02 15:04:05.000",
+	})
+	data := TestData{}
+	data.Name = "my name"
+	data.Password = "1234565"
+	data.Content = "梅须逊雪三分白,雪却输梅一段香"
+	password := encrypt.MakePwd(16)
+	encData := encrypt.AesEncrypt(password, data)
+
+	log.Println("encData:", encData)
+	message, _ := base64.StdEncoding.DecodeString(encData)
+	decData := decrypt.AesDecrypt(message, []byte(password))
+	log.Println("decData:", decData)
+
 }
