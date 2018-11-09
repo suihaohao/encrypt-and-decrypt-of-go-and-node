@@ -1,5 +1,15 @@
 package encrypt
 
+import (
+	"bytes"
+	"crypto/aes"
+	"crypto/cipher"
+	"crypto/md5"
+	"encoding/base64"
+	"encoding/json"
+	"math/rand"
+	log "github.com/sirupsen/logrus"
+)
 func AesEncrypt(password string, data interface{}) string {
 	key, iv := ByteToKey(password, 16)
 	block, err := aes.NewCipher(key)
@@ -47,4 +57,15 @@ func ByteToKey(password string, keylen int) ([]byte, []byte) {
 	}
 
 	return key, iv
+}
+
+func MakePwd(pwdl int) (string) {
+	rand.Seed(time.Now().UnixNano())
+	commonByte := []byte(commonStr)
+	str := []byte{}
+	for i := 0; i < pwdl; i++ {
+		num := rand.Intn(len(commonStr))
+		str = append(str, commonByte[num])
+	}
+	return string(str)
 }
