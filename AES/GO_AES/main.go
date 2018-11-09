@@ -14,7 +14,7 @@ type TestData struct {
 
 func main() {
   data := TestData{}
-  data.Name = "suihaohao"
+  data.Name = "my name"
   data.Password = "1234565"
   data.Content = "梅须逊雪三分白,雪却输梅一段香"
   password := encrypt.makePwd(16)
