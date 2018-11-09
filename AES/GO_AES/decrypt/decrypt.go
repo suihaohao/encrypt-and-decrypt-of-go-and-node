@@ -4,7 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/json"
-	"encrypt"
+	"go_aes/encrypt"
 	log "github.com/sirupsen/logrus"
 )
 
