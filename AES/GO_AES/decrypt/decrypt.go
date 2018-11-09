@@ -21,6 +21,9 @@ func AesDecrypt(ciphertext []byte, password []byte) (interface{}) {
 	decrypted = PKCS5UnPadding(decrypted)
 	var data map[string]interface{}
 	err = json.Unmarshal(decrypted, &data)
+	if err != nil {
+		return string(decrypted)
+	}
 	return data
 }
 
