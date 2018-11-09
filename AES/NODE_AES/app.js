@@ -1,7 +1,6 @@
 const crypto = require('crypto');
 const text = JSON.stringify({
-        "code": 100,
-        "name": "suihaohao",
+        "name": "my name",
         "password": "1234565",
         "content": "梅须逊雪三分白,雪却输梅一段香"
     })
