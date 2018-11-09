@@ -8,8 +8,10 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"math/rand"
+	"time"
 	log "github.com/sirupsen/logrus"
 )
+var commonStr = "1234567890~!@#$%^*abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 func AesEncrypt(password string, data interface{}) string {
 	key, iv := ByteToKey(password, 16)
 	block, err := aes.NewCipher(key)
