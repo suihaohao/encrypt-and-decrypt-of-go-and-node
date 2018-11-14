@@ -34,6 +34,6 @@ func RsaDecrypt(data string) (string, error) {
 	if err != nil {
 		log.Error(err)
 	}
-	res, err := rsa.DecryptOAEP(sha1.New(), rand.Reader, pri, cipherText, nil)
+	res, err := rsa.DecryptOAEP(sha1.New(), rand.Reader, priv, cipherText, nil)
 	return string(res), err
 }
